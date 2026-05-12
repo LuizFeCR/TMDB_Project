@@ -1,0 +1,44 @@
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: tmdb_postgres
+    restart: always
+
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: lz1600
+      POSTGRES_DB: tmdb_db
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pipeline:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+
+    container_name: tmdb_pipeline
+
+    depends_on:
+      - postgres
+
+    environment:
+      DB_HOST: postgres
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_NAME}
+      DB_PORT: 5433
+      PYTHONPATH: /app
+
+    working_dir: /app
+
+    command: python -m app.main
+
+volumes:
+  postgres_data:
+

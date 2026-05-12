@@ -1,0 +1,25 @@
+# Ambiente
+.env
+
+__pycache__/
+*.pyc
+
+*.log
+
+.vscode/
+
+
+postgres_data/
+
+
+
+.DS_Store
+
+.jdks/
+.docker/
+**/*.dll
+**/*.jar
+
+**/*.zip.jdks/
+.docker/
+.venv/

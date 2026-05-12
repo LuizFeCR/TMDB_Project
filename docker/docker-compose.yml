@@ -7,10 +7,9 @@ services:
     restart: always
 
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: lz1600
-      POSTGRES_DB: tmdb_db
-
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5433:5432"
 
@@ -31,7 +30,7 @@ services:
       DB_HOST: postgres
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_NAME}
+      DB_PASSWORD: ${DB_PASSWORD}
       DB_PORT: 5433
       PYTHONPATH: /app
 
